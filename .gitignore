@@ -1,1 +1,8 @@
+*.a
+*.d
+*.exe
+*.o
+*.obj
 
+hangman
+!hangman/
