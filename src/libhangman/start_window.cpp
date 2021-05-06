@@ -70,6 +70,7 @@ int begin_the_game()
 
         while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             if (go_next == 0) {
+                open_theme_window(window);
                 break;
             }
 
