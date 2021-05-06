@@ -4,5 +4,4 @@
 *.o
 *.obj
 
-hangman
-!hangman/
+bin/
