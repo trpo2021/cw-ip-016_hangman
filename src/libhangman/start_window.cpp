@@ -1,4 +1,3 @@
-#include "constants.h"
 #include "start_window.h"
 
 #include <SFML/Graphics.hpp>

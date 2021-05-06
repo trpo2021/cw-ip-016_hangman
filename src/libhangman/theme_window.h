@@ -1,5 +1,6 @@
 #pragma once
 
+#include <libhangman/button.h>
 #include <libhangman/constants.h>
 
 #include <SFML/Graphics.hpp>
