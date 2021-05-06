@@ -88,14 +88,10 @@ int begin_the_game()
 
         window.display();
 
-        sf::Event event_close_game;
-        while (window.pollEvent(event_close_game))
-            if ((event_close_game.type == sf::Event::Closed)
-                || ((event_close_game.type == sf::Event::KeyPressed)
-                    && (event_close_game.key.code == sf::Keyboard::Escape))) {
-                window.close();
-                break;
-            }
+        sf::Event event_close_app;
+        if (is_window_closed(window, event_close_app)) {
+            window.close();
+        }
     }
 
     return SUCCESS;
