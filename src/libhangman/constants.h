@@ -1,5 +1,8 @@
 #pragma once
 
+#define window_length 1120
+#define window_height 700
+
 #define max_words_amount 256
 #define theme_amount 5
 
