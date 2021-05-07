@@ -1,6 +1,6 @@
-#include <SFML/Graphics.hpp>
+#include <libhangman/start_window.h>
 
 int main()
 {
-    return 0;
+    begin_the_game();
 }
