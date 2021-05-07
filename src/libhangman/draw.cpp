@@ -60,12 +60,12 @@ int draw_alphabet(sf::RenderWindow& window, st_button abc[])
 
         abc[i].form.setSize(
                 sf::Vector2f(letter_button_size, letter_button_size));
-        abc[i].form.move(
-                window_length - length_indent - delta_length,
-                height_indent + delta_height);
         abc[i].form.setFillColor(sf::Color::White);
         abc[i].form.setOutlineThickness(button_thickness);
         abc[i].form.setOutlineColor(sf::Color::Black);
+        abc[i].form.setOrigin(
+                -window_length + length_indent + delta_length,
+                -height_indent - delta_height);
 
         abc[i].text.setFont(font);
         abc[i].text.setString(abc_string[i]);
