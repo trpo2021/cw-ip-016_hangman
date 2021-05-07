@@ -2,8 +2,6 @@
 
 int open_theme_window(sf::RenderWindow& window)
 {
-    enum buttons_theme { random, animals, countries, nature, school, sport };
-
     sf::Font font;
     if (!font.loadFromFile("../res/sansation.ttf")) {
         return CANNOT_LOAD_FONT;
@@ -24,7 +22,7 @@ int open_theme_window(sf::RenderWindow& window)
     const int text_size = 40;
     int delta_height = 0;
 
-    for (int i = random; i <= sport; ++i) {
+    for (int i = random_t; i <= sport; ++i) {
         theme_buttons[i].form.setSize(
                 sf::Vector2f(menu_button_length, menu_button_height));
         theme_buttons[i].form.move(
@@ -47,7 +45,7 @@ int open_theme_window(sf::RenderWindow& window)
         int delta_coord_height = 0;
         int choosen_theme = -1;
 
-        for (int i = random; i <= sport; ++i) {
+        for (int i = random_t; i <= sport; ++i) {
             if (sf::IntRect(
                         button_coord_length,
                         button_coord_height + delta_coord_height,
@@ -68,7 +66,7 @@ int open_theme_window(sf::RenderWindow& window)
 
         window.clear(sf::Color(bg_color_r, bg_color_g, bg_color_b));
 
-        for (int i = random; i <= sport; ++i) {
+        for (int i = random_t; i <= sport; ++i) {
             window.draw(theme_buttons[i].form);
             window.draw(theme_buttons[i].text);
         }

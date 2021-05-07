@@ -1,0 +1,9 @@
+spring
+summer
+autumn
+winter
+breeze
+climate
+cloud
+dew
+drizzle

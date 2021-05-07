@@ -1,5 +1,8 @@
 #pragma once
 
+#define max_words_amount 256
+#define theme_amount 5
+
 #define button_thickness 1
 
 #define menu_button_length 300
@@ -15,3 +18,5 @@
 
 #define SUCCESS 0
 #define CANNOT_LOAD_FONT 999
+#define CANNOT_OPEN_TXT_FILE 998
+#define TOO_LONG_WORD 997

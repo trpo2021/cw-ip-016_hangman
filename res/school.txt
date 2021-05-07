@@ -1,0 +1,7 @@
+school
+lyceum
+teacher
+pupil
+grade
+class
+lesson
