@@ -1,0 +1,11 @@
+zebra
+lion
+cat
+dog
+pig
+parrot
+cow
+fox
+wolf
+hippo
+monkey
