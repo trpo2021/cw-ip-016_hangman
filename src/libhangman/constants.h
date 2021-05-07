@@ -1,5 +1,7 @@
 #pragma once
 
+#define abc_length 26
+
 #define window_length 1120
 #define window_height 700
 
