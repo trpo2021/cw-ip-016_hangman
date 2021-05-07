@@ -45,7 +45,7 @@ int open_theme_window(sf::RenderWindow& window)
 
     while (window.isOpen()) {
         int delta_coord_height = 0;
-        // int choosen_theme = -1;
+        int choosen_theme = -1;
 
         for (int i = random; i <= sport; ++i) {
             if (sf::IntRect(
@@ -57,8 +57,8 @@ int open_theme_window(sf::RenderWindow& window)
                 theme_buttons[i].form.setFillColor(
                         sf::Color(pr_button_r, pr_button_g, pr_button_b));
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                    // choosen_theme = i;
-                    // game(window, &choosen_theme);  (Example)->call next foo
+                    choosen_theme = i;
+                    open_game_window(window, &choosen_theme);
                 }
             } else
                 theme_buttons[i].form.setFillColor(sf::Color::White);
