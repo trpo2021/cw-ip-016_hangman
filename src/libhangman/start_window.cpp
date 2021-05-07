@@ -8,9 +8,6 @@ int begin_the_game()
 {
     const std::string app_name = "Hangman - the game";
 
-    const int window_length = 1120;
-    const int window_height = 700;
-
     sf::RenderWindow window(
             sf::VideoMode(window_length, window_height),
             app_name,
