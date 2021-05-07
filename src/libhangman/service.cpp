@@ -31,23 +31,23 @@ int choose_the_word(
     switch (*choosen_theme) {
     case animals:
         *string_theme = " Animals ";
-        file_theme.open("animals.txt");
+        file_theme.open("../res/animals.txt");
         break;
     case countries:
         *string_theme = "Countries";
-        file_theme.open("countries.txt");
+        file_theme.open("../res/countries.txt");
         break;
     case nature:
         *string_theme = "  Nature ";
-        file_theme.open("nature.txt");
+        file_theme.open("../res/nature.txt");
         break;
     case school:
         *string_theme = "  School ";
-        file_theme.open("school.txt");
+        file_theme.open("../res/school.txt");
         break;
     case sport:
         *string_theme = "    Sport";
-        file_theme.open("sport.txt");
+        file_theme.open("../res/sport.txt");
         break;
     }
 
