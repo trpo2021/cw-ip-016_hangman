@@ -34,6 +34,9 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 
         window.draw(text_theme);
 
+	int word_size = choosen_word_string.size();
+        draw_word_lines(window, &word_size);
+
         window.display();
 
         sf::Event event_close_app;
