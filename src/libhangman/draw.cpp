@@ -90,6 +90,24 @@ void create_body(sf::RectangleShape& body)
     body.setPosition(235, 300);
 }
 
+void draw_lhand(sf::RectangleShape& lhand)
+{
+    const int diagonal_r = 45;
+
+    lhand.setFillColor(sf::Color::Black);
+    lhand.rotate(diagonal_r);
+    lhand.setPosition(191, 343);
+}
+
+void draw_rhand(sf::RectangleShape& rhand)
+{
+    const int diagonal_l = -45;
+
+    rhand.setFillColor(sf::Color::Black);
+    rhand.rotate(diagonal_l);
+    rhand.setPosition(235, 300);
+}
+
 int draw_alphabet(sf::RenderWindow& window, st_button abc[])
 {
     std::string abc_string[abc_length]

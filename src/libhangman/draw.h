@@ -13,4 +13,8 @@ void create_head(sf::CircleShape& head);
 
 void create_body(sf::RectangleShape& body);
 
+void draw_lhand(sf::RectangleShape& lhand);
+
+void draw_rhand(sf::RectangleShape& rhand);
+
 int draw_alphabet(sf::RenderWindow& window, st_button abc[]);
