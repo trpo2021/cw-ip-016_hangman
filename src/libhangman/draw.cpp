@@ -75,6 +75,7 @@ void create_head(sf::CircleShape& head)
 {
     const int body_thickness = 2;
 
+    head.setRadius(35);
     head.setFillColor(sf::Color(bg_color_r, bg_color_g, bg_color_b));
     head.setOutlineThickness(body_thickness);
     head.setOutlineColor(sf::Color::Black);
@@ -85,6 +86,7 @@ void create_body(sf::RectangleShape& body)
 {
     const int vertical = 90;
 
+    body.setSize(sf::Vector2f(120, 2));
     body.setFillColor(sf::Color::Black);
     body.rotate(vertical);
     body.setPosition(235, 300);
@@ -94,6 +96,7 @@ void create_lhand(sf::RectangleShape& lhand)
 {
     const int diagonal_r = 45;
 
+    lhand.setSize(sf::Vector2f(60, 1.2));
     lhand.setFillColor(sf::Color::Black);
     lhand.rotate(diagonal_r);
     lhand.setPosition(191, 343);
@@ -103,6 +106,7 @@ void create_rhand(sf::RectangleShape& rhand)
 {
     const int diagonal_l = -45;
 
+    rhand.setSize(sf::Vector2f(60, 2));
     rhand.setFillColor(sf::Color::Black);
     rhand.rotate(diagonal_l);
     rhand.setPosition(235, 300);
@@ -112,6 +116,7 @@ void create_lleg(sf::RectangleShape& lleg)
 {
     const int diagonal_l = -45;
 
+    lleg.setSize(sf::Vector2f(60, 1.2));
     lleg.setFillColor(sf::Color::Black);
     lleg.rotate(diagonal_l);
     lleg.setPosition(192, 460);
@@ -121,6 +126,7 @@ void createrleg(sf::RectangleShape& rleg)
 {
     const int diagonal_r = 45;
 
+    rleg.setSize(sf::Vector2f(60, 2));
     rleg.setFillColor(sf::Color::Black);
     rleg.rotate(diagonal_r);
     rleg.setPosition(235, 419);
