@@ -90,7 +90,7 @@ void create_body(sf::RectangleShape& body)
     body.setPosition(235, 300);
 }
 
-void draw_lhand(sf::RectangleShape& lhand)
+void create_lhand(sf::RectangleShape& lhand)
 {
     const int diagonal_r = 45;
 
@@ -99,13 +99,31 @@ void draw_lhand(sf::RectangleShape& lhand)
     lhand.setPosition(191, 343);
 }
 
-void draw_rhand(sf::RectangleShape& rhand)
+void create_rhand(sf::RectangleShape& rhand)
 {
     const int diagonal_l = -45;
 
     rhand.setFillColor(sf::Color::Black);
     rhand.rotate(diagonal_l);
     rhand.setPosition(235, 300);
+}
+
+void create_lleg(sf::RectangleShape& lleg)
+{
+    const int diagonal_l = -45;
+
+    lleg.setFillColor(sf::Color::Black);
+    lleg.rotate(diagonal_l);
+    lleg.setPosition(192, 460);
+}
+
+void createrleg(sf::RectangleShape& rleg)
+{
+    const int diagonal_r = 45;
+
+    rleg.setFillColor(sf::Color::Black);
+    rleg.rotate(diagonal_r);
+    rleg.setPosition(235, 419);
 }
 
 int draw_alphabet(sf::RenderWindow& window, st_button abc[])
