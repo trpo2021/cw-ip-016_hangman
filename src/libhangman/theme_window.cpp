@@ -41,6 +41,8 @@ int open_theme_window(sf::RenderWindow& window)
         delta_height += menu_button_height + 10;
     }
 
+    sf::sleep(sf::seconds(0.1));
+
     while (window.isOpen()) {
         int delta_coord_height = 0;
         int choosen_theme = -1;

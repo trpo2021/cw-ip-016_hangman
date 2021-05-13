@@ -7,4 +7,18 @@
 
 void draw_word_lines(sf::RenderWindow& window, int* word_size);
 
+void create_stand(sf::RectangleShape lines[]);
+
+void create_head(sf::CircleShape& head);
+
+void create_body(sf::RectangleShape& body);
+
+void create_lhand(sf::RectangleShape& lhand);
+
+void create_rhand(sf::RectangleShape& rhand);
+
+void create_lleg(sf::RectangleShape& lleg);
+
+void create_rleg(sf::RectangleShape& rleg);
+
 int draw_alphabet(sf::RenderWindow& window, st_button abc[]);
