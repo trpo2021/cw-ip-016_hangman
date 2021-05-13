@@ -25,6 +25,52 @@ void draw_word_lines(sf::RenderWindow& window, int* word_size)
     }
 }
 
+void create_stand(sf::RectangleShape lines[])
+{
+    enum e_lines {
+        bottom_timber,
+        stand_timber,
+        up_timber,
+        rope_left,
+        diag_up_timber,
+        rope_main,
+        diag_down_timber,
+    };
+
+    const int timber_width = 5;
+    const int rope_width = 2;
+
+    lines[bottom_timber].setSize(sf::Vector2f(80, timber_width));
+    lines[stand_timber].setSize(sf::Vector2f(450, timber_width));
+    lines[up_timber].setSize(sf::Vector2f(230, timber_width));
+    lines[rope_left].setSize(sf::Vector2f(300, rope_width));
+    lines[diag_up_timber].setSize(sf::Vector2f(50, timber_width));
+    lines[rope_main].setSize(sf::Vector2f(80, rope_width));
+    lines[diag_down_timber].setSize(sf::Vector2f(30, timber_width));
+
+    for (int i = bottom_timber; i < diag_down_timber + 1; ++i) {
+        lines[i].setFillColor(sf::Color::Black);
+    }
+
+    const int vertical = 90;
+    const int diagonal_l = 45;
+    const int diagonal_r = -45;
+
+    lines[stand_timber].rotate(vertical);
+    lines[rope_left].rotate(vertical);
+    lines[diag_up_timber].rotate(diagonal_r);
+    lines[rope_main].rotate(vertical);
+    lines[diag_down_timber].rotate(diagonal_l);
+
+    lines[bottom_timber].setPosition(50, 600);
+    lines[stand_timber].setPosition(90, 150);
+    lines[up_timber].setPosition(60, 150);
+    lines[rope_left].setPosition(75, 150);
+    lines[diag_up_timber].setPosition(85, 185);
+    lines[rope_main].setPosition(235, 150);
+    lines[diag_down_timber].setPosition(90, 580);
+}
+
 int draw_alphabet(sf::RenderWindow& window, st_button abc[])
 {
     std::string abc_string[abc_length]
