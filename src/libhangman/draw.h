@@ -9,4 +9,8 @@ void draw_word_lines(sf::RenderWindow& window, int* word_size);
 
 void create_stand(sf::RectangleShape lines[]);
 
+void create_head(sf::CircleShape& head);
+
+void create_body(sf::RectangleShape& body);
+
 int draw_alphabet(sf::RenderWindow& window, st_button abc[]);

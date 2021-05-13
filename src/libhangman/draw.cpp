@@ -71,7 +71,7 @@ void create_stand(sf::RectangleShape lines[])
     lines[diag_down_timber].setPosition(90, 580);
 }
 
-void draw_head(sf::CircleShape& head)
+void create_head(sf::CircleShape& head)
 {
     const int body_thickness = 2;
 
@@ -79,6 +79,15 @@ void draw_head(sf::CircleShape& head)
     head.setOutlineThickness(body_thickness);
     head.setOutlineColor(sf::Color::Black);
     head.setPosition(200, 230);
+}
+
+void create_body(sf::RectangleShape& body)
+{
+    const int vertical = 90;
+
+    body.setFillColor(sf::Color::Black);
+    body.rotate(vertical);
+    body.setPosition(235, 300);
 }
 
 int draw_alphabet(sf::RenderWindow& window, st_button abc[])
