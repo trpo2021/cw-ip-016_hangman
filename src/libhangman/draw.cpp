@@ -71,6 +71,16 @@ void create_stand(sf::RectangleShape lines[])
     lines[diag_down_timber].setPosition(90, 580);
 }
 
+void draw_head(sf::CircleShape& head)
+{
+    const int body_thickness = 2;
+
+    head.setFillColor(sf::Color(bg_color_r, bg_color_g, bg_color_b));
+    head.setOutlineThickness(body_thickness);
+    head.setOutlineColor(sf::Color::Black);
+    head.setPosition(200, 230);
+}
+
 int draw_alphabet(sf::RenderWindow& window, st_button abc[])
 {
     std::string abc_string[abc_length]
