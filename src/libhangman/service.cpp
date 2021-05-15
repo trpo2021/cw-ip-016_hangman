@@ -30,7 +30,7 @@ int choose_the_word(
     std::ifstream file_theme;
     switch (*choosen_theme) {
     case animals:
-        *string_theme = " Animals ";
+        *string_theme = "Animals";
         file_theme.open("../res/animals.txt");
         break;
     case countries:
@@ -38,15 +38,15 @@ int choose_the_word(
         file_theme.open("../res/countries.txt");
         break;
     case nature:
-        *string_theme = "  Nature ";
+        *string_theme = "Nature";
         file_theme.open("../res/nature.txt");
         break;
     case school:
-        *string_theme = "  School ";
+        *string_theme = "School";
         file_theme.open("../res/school.txt");
         break;
     case sport:
-        *string_theme = "    Sport";
+        *string_theme = "Sport";
         file_theme.open("../res/sport.txt");
         break;
     }
