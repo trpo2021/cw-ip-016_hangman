@@ -67,11 +67,12 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     text_used_letters.setString(used_letters_display);
     text_used_letters.setCharacterSize(30);
     text_used_letters.setFillColor(sf::Color::Black);
-    text_used_letters.setOrigin(-405, -250);
+    text_used_letters.setOrigin(-410, -250);
 
     window.setKeyRepeatEnabled(false);
 
     st_button abc[abc_length];
+    create_alphabet(abc, font);
 
     bool is_repeating[abc_length];
     std::fill_n(is_repeating, abc_length, false);
@@ -136,6 +137,10 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 
         window.clear(sf::Color(bg_color_r, bg_color_g, bg_color_b));
 
+        for (int i = 0; i < abc_length; ++i) {
+            window.draw(abc[i].form);
+            window.draw(abc[i].text);
+        }
         window.draw(text_theme);
         window.draw(text_tries);
         window.draw(text_used_letters);
