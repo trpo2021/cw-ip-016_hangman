@@ -69,13 +69,21 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     text_used_letters.setFillColor(sf::Color::Black);
     text_used_letters.setOrigin(-410, -250);
 
-    window.setKeyRepeatEnabled(false);
-
     st_button abc[abc_length];
     create_alphabet(abc, font);
 
     bool is_repeating[abc_length];
     std::fill_n(is_repeating, abc_length, false);
+
+    sf::RectangleShape lines[7];
+    sf::CircleShape head;
+    sf::RectangleShape body;
+    sf::RectangleShape lhand;
+    sf::RectangleShape rhand;
+    sf::RectangleShape lleg;
+    sf::RectangleShape rleg;
+
+    window.setKeyRepeatEnabled(false);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -115,11 +123,28 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                     text_tries.setString(display_tries);
 
                     switch (remaining_tries) {
-                        // Draw the picture
-                    }
-
-                    if (remaining_tries == 0) {
+                    case 6:
+                        create_stand(lines);
+                        break;
+                    case 5:
+                        create_head(head);
+                        break;
+                    case 4:
+                        create_body(body);
+                        break;
+                    case 3:
+                        create_lhand(lhand);
+                        break;
+                    case 2:
+                        create_rhand(rhand);
+                        break;
+                    case 1:
+                        create_lleg(lleg);
+                        break;
+                    case 0:
+                        create_rleg(rleg);
                         // Result window - lose
+                        break;
                     }
                 }
 
@@ -144,6 +169,22 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
         window.draw(text_tries);
         window.draw(text_used_letters);
         window.draw(text_hidden_word);
+
+        if (remaining_tries < 1)
+            window.draw(rleg);
+        if (remaining_tries < 2)
+            window.draw(lleg);
+        if (remaining_tries < 3)
+            window.draw(rhand);
+        if (remaining_tries < 4)
+            window.draw(lhand);
+        if (remaining_tries < 5)
+            window.draw(body);
+        if (remaining_tries < 6)
+            window.draw(head);
+        if (remaining_tries < 7)
+            for (size_t i = 0; i < sizeof(lines) / sizeof(lines[0]); ++i)
+                window.draw(lines[i]);
 
         window.display();
     }

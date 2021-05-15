@@ -122,21 +122,21 @@ void create_body(sf::RectangleShape& body)
 
 void create_lhand(sf::RectangleShape& lhand)
 {
-    const int diagonal_r = 45;
+    const int diagonal_l = -45;
 
     lhand.setSize(sf::Vector2f(60, 1.2));
     lhand.setFillColor(sf::Color::Black);
-    lhand.rotate(diagonal_r);
+    lhand.rotate(diagonal_l);
     lhand.setPosition(191, 343);
 }
 
 void create_rhand(sf::RectangleShape& rhand)
 {
-    const int diagonal_l = -45;
+    const int diagonal_r = 45;
 
     rhand.setSize(sf::Vector2f(60, 2));
     rhand.setFillColor(sf::Color::Black);
-    rhand.rotate(diagonal_l);
+    rhand.rotate(diagonal_r);
     rhand.setPosition(235, 300);
 }
 
@@ -150,7 +150,7 @@ void create_lleg(sf::RectangleShape& lleg)
     lleg.setPosition(192, 460);
 }
 
-void createrleg(sf::RectangleShape& rleg)
+void create_rleg(sf::RectangleShape& rleg)
 {
     const int diagonal_r = 45;
 
