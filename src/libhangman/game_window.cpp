@@ -129,10 +129,9 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                 text_used_letters.setString(used_letters_display);
             }
 
-            if (event.type == sf::Event::Closed
-                || ((event.type == sf::Event::KeyPressed)
-                    && (event.key.code == sf::Keyboard::Escape)))
+            if (is_window_closed(event)) {
                 window.close();
+            }
         }
 
         window.clear(sf::Color(bg_color_r, bg_color_g, bg_color_b));
