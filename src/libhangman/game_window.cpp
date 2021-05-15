@@ -83,6 +83,8 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     sf::RectangleShape lleg;
     sf::RectangleShape rleg;
 
+    bool is_win = false;
+
     window.setKeyRepeatEnabled(false);
 
     while (window.isOpen()) {
@@ -109,7 +111,9 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 
                     if (hidden_word.find(ascii_underline)
                         == std::string::npos) {
-                        // Result window - win
+                        is_win = true;
+                        open_result_window(
+                                window, is_win, &choosen_word_string);
                     }
 
                     text_hidden_word.setString(hidden_word);
@@ -143,7 +147,12 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                         break;
                     case 0:
                         create_rleg(rleg);
-                        // Result window - lose
+                        window.draw(rleg);
+                        window.display();
+
+                        is_win = false;
+                        open_result_window(
+                                window, is_win, &choosen_word_string);
                         break;
                     }
                 }
