@@ -13,5 +13,7 @@ enum buttons_theme { random_t, animals, countries, nature, school, sport };
 
 bool is_window_closed(sf::Event event);
 
+bool is_word_correct(std::string choosen_word);
+
 int choose_the_word(
         int* choosen_theme, std::string* string_theme, std::string* final_word);

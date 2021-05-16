@@ -4,7 +4,7 @@
 
 #include <cstring>
 
-CTEST(words_check, theme_random)
+CTEST(theme_check, random)
 {
     int theme_number = random_t;
     std::string theme;
@@ -17,7 +17,7 @@ CTEST(words_check, theme_random)
     ASSERT_NOT_EQUAL(unexp_theme, theme_number);
 }
 
-CTEST(words_check, theme_animals)
+CTEST(theme_check, animals)
 {
     int theme_number = animals;
     std::string theme;
@@ -35,7 +35,7 @@ CTEST(words_check, theme_animals)
     delete[] res_theme;
 }
 
-CTEST(words_check, theme_countries)
+CTEST(theme_check, countries)
 {
     int theme_number = countries;
     std::string theme;
@@ -53,7 +53,7 @@ CTEST(words_check, theme_countries)
     delete[] res_theme;
 }
 
-CTEST(words_check, theme_nature)
+CTEST(theme_check, nature)
 {
     int theme_number = nature;
     std::string theme;
@@ -71,7 +71,7 @@ CTEST(words_check, theme_nature)
     delete[] res_theme;
 }
 
-CTEST(words_check, theme_school)
+CTEST(theme_check, school)
 {
     int theme_number = school;
     std::string theme;
@@ -89,7 +89,7 @@ CTEST(words_check, theme_school)
     delete[] res_theme;
 }
 
-CTEST(words_check, theme_sport)
+CTEST(theme_check, sport)
 {
     int theme_number = sport;
     std::string theme;
@@ -105,4 +105,112 @@ CTEST(words_check, theme_sport)
     ASSERT_STR(exp_theme, res_theme);
 
     delete[] res_theme;
+}
+
+CTEST(words_check, word_correct_1)
+{
+    std::string word = "fox";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_TRUE(exp);
+}
+
+CTEST(words_check, word_correct_2)
+{
+    std::string word = "swimming";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_TRUE(exp);
+}
+
+CTEST(words_check, word_correct_3)
+{
+    std::string word = "machine";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_TRUE(exp);
+}
+
+CTEST(words_check, word_error_short)
+{
+    std::string word = "ok";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_FALSE(exp);
+}
+
+CTEST(words_check, word_error_long)
+{
+    std::string word = "translate";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_FALSE(exp);
+}
+
+CTEST(words_check, word_error_symbols_1)
+{
+    std::string word = "Game";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_FALSE(exp);
+}
+
+CTEST(words_check, word_error_symbols_2)
+{
+    std::string word = "staR";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_FALSE(exp);
+}
+
+CTEST(words_check, word_error_symbols_3)
+{
+    std::string word = "jo_in";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_FALSE(exp);
+}
+
+CTEST(words_check, word_error_symbols_4)
+{
+    std::string word = "1nature";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_FALSE(exp);
+}
+
+CTEST(words_check, word_error_symbols_5)
+{
+    std::string word = "k-ey";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_FALSE(exp);
+}
+
+CTEST(words_check, word_error_symbols_6)
+{
+    std::string word = "poo]l";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_FALSE(exp);
+}
+
+CTEST(words_check, word_error_symbols_7)
+{
+    std::string word = "notice*";
+
+    bool exp = is_word_correct(word);
+
+    ASSERT_FALSE(exp);
 }
