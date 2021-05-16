@@ -214,3 +214,66 @@ CTEST(words_check, word_error_symbols_7)
 
     ASSERT_FALSE(exp);
 }
+
+CTEST(input_check, symbol_correct_1)
+{
+    char symbol = 'a';
+
+    int exp = check_input_symbol(symbol);
+
+    ASSERT_EQUAL(SUCCESS, exp);
+}
+
+CTEST(input_check, symbol_correct_2)
+{
+    char symbol = 'm';
+
+    int exp = check_input_symbol(symbol);
+
+    ASSERT_EQUAL(SUCCESS, exp);
+}
+
+CTEST(input_check, symbol_correct_3)
+{
+    char symbol = 'z';
+
+    int exp = check_input_symbol(symbol);
+
+    ASSERT_EQUAL(SUCCESS, exp);
+}
+
+CTEST(input_check, symbol_error_1)
+{
+    char symbol = 'A';
+
+    int exp = check_input_symbol(symbol);
+
+    ASSERT_EQUAL(ERROR_SYMBOL_INPUT, exp);
+}
+
+CTEST(input_check, symbol_error_2)
+{
+    char symbol = '-';
+
+    int exp = check_input_symbol(symbol);
+
+    ASSERT_EQUAL(ERROR_SYMBOL_INPUT, exp);
+}
+
+CTEST(input_check, symbol_error_3)
+{
+    char symbol = 'O';
+
+    int exp = check_input_symbol(symbol);
+
+    ASSERT_EQUAL(ERROR_SYMBOL_INPUT, exp);
+}
+
+CTEST(input_check, symbol_error_4)
+{
+    char symbol = '7';
+
+    int exp = check_input_symbol(symbol);
+
+    ASSERT_EQUAL(ERROR_SYMBOL_INPUT, exp);
+}
