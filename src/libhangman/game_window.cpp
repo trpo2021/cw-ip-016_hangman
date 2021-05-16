@@ -99,6 +99,11 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                 && is_repeating[event.text.unicode - ascii_letter_a] == false) {
                 char ascii_entered_letter = event.text.unicode;
 
+                if (check_input_symbol(ascii_entered_letter) != SUCCESS) {
+                    window.close();
+                    return ERROR_SYMBOL_INPUT;
+                }
+
                 is_repeating[ascii_entered_letter - ascii_letter_a] = true;
 
                 size_t letter_pos

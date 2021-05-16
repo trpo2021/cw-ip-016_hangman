@@ -26,6 +26,13 @@ bool is_word_correct(std::string choosen_word)
             && is_correct == std::string::npos;
 }
 
+int check_input_symbol(char symbol)
+{
+    if (symbol >= ascii_letter_a && symbol <= ascii_letter_z)
+        return SUCCESS;
+    return ERROR_SYMBOL_INPUT;
+}
+
 int choose_the_word(
         int* choosen_theme, std::string* string_theme, std::string* final_word)
 {
