@@ -11,6 +11,8 @@
 #define window_height 700
 
 #define max_words_amount 256
+#define max_word_length 8
+#define min_word_length 3
 #define theme_amount 5
 
 #define button_thickness 1
@@ -29,4 +31,5 @@
 #define SUCCESS 0
 #define CANNOT_LOAD_FONT 999
 #define CANNOT_OPEN_TXT_FILE 998
-#define TOO_LONG_WORD 997
+#define INCORRECT_WORD_IN_TXT_FILE 997
+#define ERROR_SYMBOL_INPUT 996

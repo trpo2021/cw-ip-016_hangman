@@ -16,6 +16,23 @@ bool is_window_closed(sf::Event event)
     return false;
 }
 
+bool is_word_correct(std::string choosen_word)
+{
+    size_t is_correct
+            = choosen_word.find_first_not_of("abcdefghijklmnopqrstuvwxyz");
+
+    return choosen_word.size() <= max_word_length
+            && choosen_word.size() >= min_word_length
+            && is_correct == std::string::npos;
+}
+
+int check_input_symbol(char symbol)
+{
+    if (symbol >= ascii_letter_a && symbol <= ascii_letter_z)
+        return SUCCESS;
+    return ERROR_SYMBOL_INPUT;
+}
+
 int choose_the_word(
         int* choosen_theme, std::string* string_theme, std::string* final_word)
 {
@@ -62,8 +79,8 @@ int choose_the_word(
 
     int word_number = rand() % words_amount;
 
-    if (word_buffer[word_number].size() > 8)
-        return TOO_LONG_WORD;
+    if (!is_word_correct(word_buffer[word_number]))
+        return INCORRECT_WORD_IN_TXT_FILE;
 
     *final_word = word_buffer[word_number];
 

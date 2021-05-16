@@ -18,8 +18,6 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 
     int foo_ctw = choose_the_word(
             choosen_theme, &choosen_theme_string, &choosen_word_string);
-    if (foo_ctw != SUCCESS)
-        return foo_ctw;
 
     if (is_random_theme)
         choosen_theme_string = "Random";
@@ -88,6 +86,11 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     window.setKeyRepeatEnabled(false);
 
     while (window.isOpen()) {
+        if (foo_ctw != SUCCESS) {
+            window.close();
+            return foo_ctw;
+        }
+
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::TextEntered
@@ -95,6 +98,11 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                 && event.text.unicode >= ascii_letter_a && remaining_tries != 0
                 && is_repeating[event.text.unicode - ascii_letter_a] == false) {
                 char ascii_entered_letter = event.text.unicode;
+
+                if (check_input_symbol(ascii_entered_letter) != SUCCESS) {
+                    window.close();
+                    return ERROR_SYMBOL_INPUT;
+                }
 
                 is_repeating[ascii_entered_letter - ascii_letter_a] = true;
 
