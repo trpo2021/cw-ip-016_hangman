@@ -21,7 +21,9 @@ bool is_word_correct(std::string choosen_word)
     size_t is_correct
             = choosen_word.find_first_not_of("abcdefghijklmnopqrstuvwxyz");
 
-    return !(choosen_word.size() > 8) && is_correct == std::string::npos;
+    return choosen_word.size() <= max_word_length
+            && choosen_word.size() >= min_word_length
+            && is_correct == std::string::npos;
 }
 
 int choose_the_word(

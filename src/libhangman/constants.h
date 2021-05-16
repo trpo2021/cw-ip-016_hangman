@@ -11,6 +11,8 @@
 #define window_height 700
 
 #define max_words_amount 256
+#define max_word_length 8
+#define min_word_length 3
 #define theme_amount 5
 
 #define button_thickness 1
