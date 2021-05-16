@@ -18,8 +18,6 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 
     int foo_ctw = choose_the_word(
             choosen_theme, &choosen_theme_string, &choosen_word_string);
-    if (foo_ctw != SUCCESS)
-        return foo_ctw;
 
     if (is_random_theme)
         choosen_theme_string = "Random";
@@ -88,6 +86,11 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     window.setKeyRepeatEnabled(false);
 
     while (window.isOpen()) {
+        if (foo_ctw != SUCCESS) {
+            window.close();
+            return foo_ctw;
+        }
+
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::TextEntered
