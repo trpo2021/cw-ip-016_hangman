@@ -75,7 +75,8 @@ int begin_the_game()
             }
         }
 
-        window.clear(sf::Color(bg_color_r, bg_color_g, bg_color_b));
+        window.clear(
+                sf::Color((int)BgColor::r, (int)BgColor::g, (int)BgColor::b));
 
         window.draw(button_play);
         window.draw(button_quit);
@@ -86,9 +87,10 @@ int begin_the_game()
         window.display();
 
         sf::Event event_close_app;
-        if (is_window_closed(event_close_app)) {
-            window.close();
-        }
+        while (window.pollEvent(event_close_app))
+            if (is_window_closed(event_close_app)) {
+                window.close();
+            }
     }
 
     return SUCCESS;

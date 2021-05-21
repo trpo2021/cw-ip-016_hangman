@@ -29,7 +29,7 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     std::string display_tries = "Your tries: 7";
 
     std::string hidden_word;
-    hidden_word.append(choosen_word_string.size(), hidden_letter);
+    hidden_word.append(choosen_word_string.size(), ascii_hidden_letter);
 
     sf::Text text_hidden_word(hidden_word, font);
     text_hidden_word.setFillColor(sf::Color::Black);
@@ -118,8 +118,7 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 
                     if (is_word_guessed(choosen_word_string, hidden_word)) {
                         is_win = true;
-                        open_result_window(
-                                window, is_win, &choosen_word_string);
+                        open_result_window(window, is_win, choosen_word_string);
                     }
 
                     text_hidden_word.setString(hidden_word);
@@ -157,8 +156,7 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                         window.display();
 
                         is_win = false;
-                        open_result_window(
-                                window, is_win, &choosen_word_string);
+                        open_result_window(window, is_win, choosen_word_string);
                         break;
                     }
                 }
@@ -174,7 +172,8 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
             }
         }
 
-        window.clear(sf::Color(bg_color_r, bg_color_g, bg_color_b));
+        window.clear(
+                sf::Color((int)BgColor::r, (int)BgColor::g, (int)BgColor::b));
 
         for (int i = 0; i < abc_length; ++i) {
             window.draw(abc[i].form);

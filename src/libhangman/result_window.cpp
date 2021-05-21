@@ -1,7 +1,7 @@
 #include "result_window.h"
 
 int open_result_window(
-        sf::RenderWindow& window, bool is_win, std::string* the_word)
+        sf::RenderWindow& window, bool is_win, std::string the_word)
 {
     sf::Font font;
     if (!font.loadFromFile("../res/sansation.ttf")) {
@@ -25,7 +25,7 @@ int open_result_window(
 
     sf::Text text_the_word;
     text_the_word.setFont(font);
-    text_the_word.setString("Answer is: " + *the_word);
+    text_the_word.setString("Answer is: " + the_word);
     text_the_word.setCharacterSize(50);
     text_the_word.setFillColor(sf::Color::Black);
     sf::FloatRect rect_word = text_the_word.getLocalBounds();
@@ -45,7 +45,7 @@ int open_result_window(
         result_buttons[i].form.setSize(sf::Vector2f(300, 100));
         result_buttons[i].form.move(400, 220 + delta_height);
         result_buttons[i].form.setFillColor(sf::Color(255, 255, 255));
-        result_buttons[i].form.setOutlineThickness(button_thickness);
+        result_buttons[i].form.setOutlineThickness(1);
         result_buttons[i].form.setOutlineColor(sf::Color::Black);
 
         result_buttons[i].text.setFont(font);
@@ -69,8 +69,10 @@ int open_result_window(
             for (int i = 0; i <= 1; ++i) {
                 if (sf::IntRect(400, 220 + delta, 300, 100)
                             .contains(sf::Mouse::getPosition(window))) {
-                    result_buttons[i].form.setFillColor(
-                            sf::Color(pr_button_r, pr_button_g, pr_button_b));
+                    result_buttons[i].form.setFillColor(sf::Color(
+                            (int)PrButColor::r,
+                            (int)PrButColor::g,
+                            (int)PrButColor::b));
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                         if (i == 0)
                             open_theme_window(window);
@@ -87,7 +89,8 @@ int open_result_window(
             }
         }
 
-        window.clear(sf::Color(bg_color_r, bg_color_g, bg_color_b));
+        window.clear(
+                sf::Color((int)BgColor::r, (int)BgColor::g, (int)BgColor::b));
 
         window.draw(text_result);
         window.draw(text_the_word);

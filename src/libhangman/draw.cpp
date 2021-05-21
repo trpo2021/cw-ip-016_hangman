@@ -33,7 +33,7 @@ void create_alphabet(st_button abc[], sf::Font& font)
         abc[i].form.setSize(
                 sf::Vector2f(letter_button_size, letter_button_size));
         abc[i].form.setFillColor(sf::Color::White);
-        abc[i].form.setOutlineThickness(button_thickness);
+        abc[i].form.setOutlineThickness(1);
         abc[i].form.setOutlineColor(sf::Color::Black);
         abc[i].form.setOrigin(
                 -window_length + length_indent + delta_length,
@@ -104,7 +104,8 @@ void create_head(sf::CircleShape& head)
     const int body_thickness = 2;
 
     head.setRadius(35);
-    head.setFillColor(sf::Color(bg_color_r, bg_color_g, bg_color_b));
+    head.setFillColor(
+            sf::Color((int)BgColor::r, (int)BgColor::g, (int)BgColor::b));
     head.setOutlineThickness(body_thickness);
     head.setOutlineColor(sf::Color::Black);
     head.setPosition(200, 230);
@@ -159,4 +160,3 @@ void create_rleg(sf::RectangleShape& rleg)
     rleg.rotate(diagonal_r);
     rleg.setPosition(235, 419);
 }
-

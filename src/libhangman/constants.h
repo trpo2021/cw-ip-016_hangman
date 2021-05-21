@@ -1,32 +1,23 @@
 #pragma once
 
-#define abc_length 26
+const int abc_length = 26;
 
-#define ascii_number_0 48
-#define hidden_letter 95
-#define ascii_letter_a 97
-#define ascii_letter_z 122
+const int ascii_number_0 = 48;
+const int ascii_hidden_letter = 95;
+const int ascii_letter_a = 97;
+const int ascii_letter_z = 122;
 
-#define window_length 1120
-#define window_height 700
+const int window_length = 1120;
+const int window_height = 700;
 
-#define max_words_amount 256
-#define max_word_length 8
-#define min_word_length 3
-#define theme_amount 5
+const int max_words_amount = 256;
+const int max_word_length = 8;
+const int min_word_length = 3;
 
-#define button_thickness 1
+const int theme_amount = 5;
 
-#define menu_button_length 300
-#define menu_button_height 100
-
-#define bg_color_r 255
-#define bg_color_g 235
-#define bg_color_b 200
-
-#define pr_button_r 236
-#define pr_button_g 223
-#define pr_button_b 255
+enum class BgColor { r = 255, g = 235, b = 200 };
+enum class PrButColor { r = 236, g = 223, b = 255 };
 
 #define SUCCESS 0
 #define CANNOT_LOAD_FONT 999
