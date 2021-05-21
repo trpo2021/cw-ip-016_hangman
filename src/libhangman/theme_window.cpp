@@ -54,8 +54,10 @@ int open_theme_window(sf::RenderWindow& window)
                         menu_button_length,
                         menu_button_height)
                         .contains(sf::Mouse::getPosition(window))) {
-                theme_buttons[i].form.setFillColor(
-                        sf::Color(pr_button_r, pr_button_g, pr_button_b));
+                theme_buttons[i].form.setFillColor(sf::Color(
+                        (int)pr_but_color::r,
+                        (int)pr_but_color::g,
+                        (int)pr_but_color::b));
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                     choosen_theme = i;
                     open_game_window(window, &choosen_theme);
@@ -66,7 +68,8 @@ int open_theme_window(sf::RenderWindow& window)
             delta_coord_height += 110;
         }
 
-        window.clear(sf::Color(bg_color_r, bg_color_g, bg_color_b));
+        window.clear(sf::Color(
+                (int)bg_color::r, (int)bg_color::g, (int)bg_color::b));
 
         for (int i = random_t; i <= sport; ++i) {
             window.draw(theme_buttons[i].form);

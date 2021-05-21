@@ -69,8 +69,10 @@ int open_result_window(
             for (int i = 0; i <= 1; ++i) {
                 if (sf::IntRect(400, 220 + delta, 300, 100)
                             .contains(sf::Mouse::getPosition(window))) {
-                    result_buttons[i].form.setFillColor(
-                            sf::Color(pr_button_r, pr_button_g, pr_button_b));
+                    result_buttons[i].form.setFillColor(sf::Color(
+                            (int)pr_but_color::r,
+                            (int)pr_but_color::g,
+                            (int)pr_but_color::b));
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                         if (i == 0)
                             open_theme_window(window);
@@ -87,7 +89,8 @@ int open_result_window(
             }
         }
 
-        window.clear(sf::Color(bg_color_r, bg_color_g, bg_color_b));
+        window.clear(sf::Color(
+                (int)bg_color::r, (int)bg_color::g, (int)bg_color::b));
 
         window.draw(text_result);
         window.draw(text_the_word);
