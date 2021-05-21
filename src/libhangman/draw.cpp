@@ -160,4 +160,3 @@ void create_rleg(sf::RectangleShape& rleg)
     rleg.rotate(diagonal_r);
     rleg.setPosition(235, 419);
 }
-

@@ -118,8 +118,7 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 
                     if (is_word_guessed(choosen_word_string, hidden_word)) {
                         is_win = true;
-                        open_result_window(
-                                window, is_win, &choosen_word_string);
+                        open_result_window(window, is_win, choosen_word_string);
                     }
 
                     text_hidden_word.setString(hidden_word);
@@ -157,8 +156,7 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                         window.display();
 
                         is_win = false;
-                        open_result_window(
-                                window, is_win, &choosen_word_string);
+                        open_result_window(window, is_win, choosen_word_string);
                         break;
                     }
                 }

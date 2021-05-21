@@ -1,7 +1,7 @@
 #include "result_window.h"
 
 int open_result_window(
-        sf::RenderWindow& window, bool is_win, std::string* the_word)
+        sf::RenderWindow& window, bool is_win, std::string the_word)
 {
     sf::Font font;
     if (!font.loadFromFile("../res/sansation.ttf")) {
@@ -25,7 +25,7 @@ int open_result_window(
 
     sf::Text text_the_word;
     text_the_word.setFont(font);
-    text_the_word.setString("Answer is: " + *the_word);
+    text_the_word.setString("Answer is: " + the_word);
     text_the_word.setCharacterSize(50);
     text_the_word.setFillColor(sf::Color::Black);
     sf::FloatRect rect_word = text_the_word.getLocalBounds();
