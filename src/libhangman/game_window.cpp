@@ -29,7 +29,7 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     std::string display_tries = "Your tries: 7";
 
     std::string hidden_word;
-    hidden_word.append(choosen_word_string.size(), ascii_underline);
+    hidden_word.append(choosen_word_string.size(), hidden_letter);
 
     sf::Text text_hidden_word(hidden_word, font);
     text_hidden_word.setFillColor(sf::Color::Black);
@@ -110,15 +110,13 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                         = choosen_word_string.find(ascii_entered_letter);
 
                 if (letter_pos != std::string::npos) {
-                    while (letter_pos != std::string::npos) {
-                        hidden_word.replace(
-                                letter_pos, 1, 1, ascii_entered_letter);
-                        letter_pos = choosen_word_string.find(
-                                ascii_entered_letter, letter_pos + 1);
-                    }
+                    put_guessed_letters(
+                            letter_pos,
+                            ascii_entered_letter,
+                            choosen_word_string,
+                            &hidden_word);
 
-                    if (hidden_word.find(ascii_underline)
-                        == std::string::npos) {
+                    if (is_word_guessed(choosen_word_string, hidden_word)) {
                         is_win = true;
                         open_result_window(
                                 window, is_win, &choosen_word_string);
