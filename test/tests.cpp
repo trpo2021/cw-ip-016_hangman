@@ -461,3 +461,43 @@ CTEST(replace_letters, incorrect_symbol_3)
 
     delete[] res_hid_word;
 }
+
+CTEST(check_guessed_word, word_guessed_1)
+{
+    std::string word = "cat";
+    std::string hidden_word = "cat";
+
+    bool exp = is_word_guessed(word, hidden_word);
+
+    ASSERT_TRUE(exp);
+}
+
+CTEST(check_guessed_word, word_guessed_2)
+{
+    std::string word = "story";
+    std::string hidden_word = "story";
+
+    bool exp = is_word_guessed(word, hidden_word);
+
+    ASSERT_TRUE(exp);
+}
+
+CTEST(check_guessed_word, word_not_guessed_1)
+{
+    std::string word = "lake";
+    std::string hidden_word = "l_ke";
+
+    bool exp = is_word_guessed(word, hidden_word);
+
+    ASSERT_FALSE(exp);
+}
+
+CTEST(check_guessed_word, word_not_guessed_2)
+{
+    std::string word = "trail";
+    std::string hidden_word = "__ai_";
+
+    bool exp = is_word_guessed(word, hidden_word);
+
+    ASSERT_FALSE(exp);
+}

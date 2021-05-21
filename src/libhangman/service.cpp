@@ -45,7 +45,7 @@ void put_guessed_letters(
     }
 }
 
-bool is_word_gueesed(std::string word, std::string hidden_word)
+bool is_word_guessed(std::string word, std::string hidden_word)
 {
     return hidden_word == word;
 }

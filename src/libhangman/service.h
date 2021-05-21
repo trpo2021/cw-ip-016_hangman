@@ -23,7 +23,7 @@ void put_guessed_letters(
         std::string word,
         std::string* hidden_word);
 
-bool is_word_gueesed(std::string word, std::string hidden_word);
+bool is_word_guessed(std::string word, std::string hidden_word);
 
 int choose_the_word(
         int* choosen_theme, std::string* string_theme, std::string* final_word);
