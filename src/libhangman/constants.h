@@ -3,7 +3,7 @@
 #define abc_length 26
 
 #define ascii_number_0 48
-#define ascii_underline 95
+#define hidden_letter 95
 #define ascii_letter_a 97
 #define ascii_letter_z 122
 

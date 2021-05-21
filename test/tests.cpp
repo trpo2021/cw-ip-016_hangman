@@ -277,3 +277,187 @@ CTEST(input_check, symbol_error_4)
 
     ASSERT_EQUAL(ERROR_SYMBOL_INPUT, exp);
 }
+
+CTEST(replace_letters, correct_symbol_begin)
+{
+    std::string word = "horse";
+
+    std::string hidden_word;
+    hidden_word.append(word.size(), hidden_letter);
+
+    char entered_letter = 'h';
+
+    size_t letter_pos = word.find(entered_letter);
+
+    put_guessed_letters(letter_pos, entered_letter, word, &hidden_word);
+
+    char exp_hid_word[] = "h____";
+
+    char* res_hid_word = new char[hidden_word.length() + 1];
+    strcpy(res_hid_word, hidden_word.c_str());
+
+    ASSERT_STR(exp_hid_word, res_hid_word);
+
+    delete[] res_hid_word;
+}
+
+CTEST(replace_letters, correct_symbol_middle)
+{
+    std::string word = "zebra";
+
+    std::string hidden_word;
+    hidden_word.append(word.size(), hidden_letter);
+
+    char entered_letter = 'e';
+
+    size_t letter_pos = word.find(entered_letter);
+
+    put_guessed_letters(letter_pos, entered_letter, word, &hidden_word);
+
+    char exp_hid_word[] = "_e___";
+
+    char* res_hid_word = new char[hidden_word.length() + 1];
+    strcpy(res_hid_word, hidden_word.c_str());
+
+    ASSERT_STR(exp_hid_word, res_hid_word);
+
+    delete[] res_hid_word;
+}
+
+CTEST(replace_letters, correct_symbol_end)
+{
+    std::string word = "notebook";
+
+    std::string hidden_word;
+    hidden_word.append(word.size(), hidden_letter);
+
+    char entered_letter = 'k';
+
+    size_t letter_pos = word.find(entered_letter);
+
+    put_guessed_letters(letter_pos, entered_letter, word, &hidden_word);
+
+    char exp_hid_word[] = "_______k";
+
+    char* res_hid_word = new char[hidden_word.length() + 1];
+    strcpy(res_hid_word, hidden_word.c_str());
+
+    ASSERT_STR(exp_hid_word, res_hid_word);
+
+    delete[] res_hid_word;
+}
+
+CTEST(replace_letters, correct_symbol_double)
+{
+    std::string word = "swimming";
+
+    std::string hidden_word;
+    hidden_word.append(word.size(), hidden_letter);
+
+    char entered_letter = 'i';
+
+    size_t letter_pos = word.find(entered_letter);
+
+    put_guessed_letters(letter_pos, entered_letter, word, &hidden_word);
+
+    char exp_hid_word[] = "__i__i__";
+
+    char* res_hid_word = new char[hidden_word.length() + 1];
+    strcpy(res_hid_word, hidden_word.c_str());
+
+    ASSERT_STR(exp_hid_word, res_hid_word);
+
+    delete[] res_hid_word;
+}
+
+CTEST(replace_letters, correct_symbol_triple)
+{
+    std::string word = "notebook";
+
+    std::string hidden_word;
+    hidden_word.append(word.size(), hidden_letter);
+
+    char entered_letter = 'o';
+
+    size_t letter_pos = word.find(entered_letter);
+
+    put_guessed_letters(letter_pos, entered_letter, word, &hidden_word);
+
+    char exp_hid_word[] = "_o___oo_";
+
+    char* res_hid_word = new char[hidden_word.length() + 1];
+    strcpy(res_hid_word, hidden_word.c_str());
+
+    ASSERT_STR(exp_hid_word, res_hid_word);
+
+    delete[] res_hid_word;
+}
+
+CTEST(replace_letters, incorrect_symbol_1)
+{
+    std::string word = "sun";
+
+    std::string hidden_word;
+    hidden_word.append(word.size(), hidden_letter);
+
+    char entered_letter = 'a';
+
+    size_t letter_pos = word.find(entered_letter);
+
+    put_guessed_letters(letter_pos, entered_letter, word, &hidden_word);
+
+    char exp_hid_word[] = "___";
+
+    char* res_hid_word = new char[hidden_word.length() + 1];
+    strcpy(res_hid_word, hidden_word.c_str());
+
+    ASSERT_STR(exp_hid_word, res_hid_word);
+
+    delete[] res_hid_word;
+}
+
+CTEST(replace_letters, incorrect_symbol_2)
+{
+    std::string word = "letter";
+
+    std::string hidden_word;
+    hidden_word.append(word.size(), hidden_letter);
+
+    char entered_letter = 'p';
+
+    size_t letter_pos = word.find(entered_letter);
+
+    put_guessed_letters(letter_pos, entered_letter, word, &hidden_word);
+
+    char exp_hid_word[] = "______";
+
+    char* res_hid_word = new char[hidden_word.length() + 1];
+    strcpy(res_hid_word, hidden_word.c_str());
+
+    ASSERT_STR(exp_hid_word, res_hid_word);
+
+    delete[] res_hid_word;
+}
+
+CTEST(replace_letters, incorrect_symbol_3)
+{
+    std::string word = "music";
+
+    std::string hidden_word;
+    hidden_word.append(word.size(), hidden_letter);
+
+    char entered_letter = 'b';
+
+    size_t letter_pos = word.find(entered_letter);
+
+    put_guessed_letters(letter_pos, entered_letter, word, &hidden_word);
+
+    char exp_hid_word[] = "_____";
+
+    char* res_hid_word = new char[hidden_word.length() + 1];
+    strcpy(res_hid_word, hidden_word.c_str());
+
+    ASSERT_STR(exp_hid_word, res_hid_word);
+
+    delete[] res_hid_word;
+}
