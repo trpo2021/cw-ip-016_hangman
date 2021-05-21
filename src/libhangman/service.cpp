@@ -8,12 +8,9 @@
 
 bool is_window_closed(sf::Event event)
 {
-    if ((event.type == sf::Event::Closed)
-        || ((event.type == sf::Event::KeyPressed)
-            && (event.key.code == sf::Keyboard::Escape))) {
-        return true;
-    }
-    return false;
+    return (event.type == sf::Event::Closed)
+            || ((event.type == sf::Event::KeyPressed)
+                && (event.key.code == sf::Keyboard::Escape));
 }
 
 bool is_word_correct(std::string choosen_word)

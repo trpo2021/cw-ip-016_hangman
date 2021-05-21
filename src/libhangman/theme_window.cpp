@@ -79,9 +79,10 @@ int open_theme_window(sf::RenderWindow& window)
         window.display();
 
         sf::Event event_close_app;
-        if (is_window_closed(event_close_app)) {
-            window.close();
-        }
+        while (window.pollEvent(event_close_app))
+            if (is_window_closed(event_close_app)) {
+                window.close();
+            }
     }
 
     return SUCCESS;
