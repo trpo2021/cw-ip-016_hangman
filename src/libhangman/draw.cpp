@@ -105,7 +105,7 @@ void create_head(sf::CircleShape& head)
 
     head.setRadius(35);
     head.setFillColor(
-            sf::Color((int)bg_color::r, (int)bg_color::g, (int)bg_color::b));
+            sf::Color((int)BgColor::r, (int)BgColor::g, (int)BgColor::b));
     head.setOutlineThickness(body_thickness);
     head.setOutlineColor(sf::Color::Black);
     head.setPosition(200, 230);

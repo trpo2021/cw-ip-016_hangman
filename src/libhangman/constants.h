@@ -16,8 +16,8 @@ const int min_word_length = 3;
 
 const int theme_amount = 5;
 
-enum class bg_color { r = 255, g = 235, b = 200 };
-enum class pr_but_color { r = 236, g = 223, b = 255 };
+enum class BgColor { r = 255, g = 235, b = 200 };
+enum class PrButColor { r = 236, g = 223, b = 255 };
 
 #define SUCCESS 0
 #define CANNOT_LOAD_FONT 999

@@ -172,8 +172,8 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
             }
         }
 
-        window.clear(sf::Color(
-                (int)bg_color::r, (int)bg_color::g, (int)bg_color::b));
+        window.clear(
+                sf::Color((int)BgColor::r, (int)BgColor::g, (int)BgColor::b));
 
         for (int i = 0; i < abc_length; ++i) {
             window.draw(abc[i].form);

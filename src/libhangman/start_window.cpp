@@ -75,8 +75,8 @@ int begin_the_game()
             }
         }
 
-        window.clear(sf::Color(
-                (int)bg_color::r, (int)bg_color::g, (int)bg_color::b));
+        window.clear(
+                sf::Color((int)BgColor::r, (int)BgColor::g, (int)BgColor::b));
 
         window.draw(button_play);
         window.draw(button_quit);
