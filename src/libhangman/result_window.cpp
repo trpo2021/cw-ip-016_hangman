@@ -45,7 +45,7 @@ int open_result_window(
         result_buttons[i].form.setSize(sf::Vector2f(300, 100));
         result_buttons[i].form.move(400, 220 + delta_height);
         result_buttons[i].form.setFillColor(sf::Color(255, 255, 255));
-        result_buttons[i].form.setOutlineThickness(button_thickness);
+        result_buttons[i].form.setOutlineThickness(1);
         result_buttons[i].form.setOutlineColor(sf::Color::Black);
 
         result_buttons[i].text.setFont(font);

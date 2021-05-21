@@ -283,7 +283,7 @@ CTEST(replace_letters, correct_symbol_begin)
     std::string word = "horse";
 
     std::string hidden_word;
-    hidden_word.append(word.size(), hidden_letter);
+    hidden_word.append(word.size(), ascii_hidden_letter);
 
     char entered_letter = 'h';
 
@@ -306,7 +306,7 @@ CTEST(replace_letters, correct_symbol_middle)
     std::string word = "zebra";
 
     std::string hidden_word;
-    hidden_word.append(word.size(), hidden_letter);
+    hidden_word.append(word.size(), ascii_hidden_letter);
 
     char entered_letter = 'e';
 
@@ -329,7 +329,7 @@ CTEST(replace_letters, correct_symbol_end)
     std::string word = "notebook";
 
     std::string hidden_word;
-    hidden_word.append(word.size(), hidden_letter);
+    hidden_word.append(word.size(), ascii_hidden_letter);
 
     char entered_letter = 'k';
 
@@ -352,7 +352,7 @@ CTEST(replace_letters, correct_symbol_double)
     std::string word = "swimming";
 
     std::string hidden_word;
-    hidden_word.append(word.size(), hidden_letter);
+    hidden_word.append(word.size(), ascii_hidden_letter);
 
     char entered_letter = 'i';
 
@@ -375,7 +375,7 @@ CTEST(replace_letters, correct_symbol_triple)
     std::string word = "notebook";
 
     std::string hidden_word;
-    hidden_word.append(word.size(), hidden_letter);
+    hidden_word.append(word.size(), ascii_hidden_letter);
 
     char entered_letter = 'o';
 
@@ -398,7 +398,7 @@ CTEST(replace_letters, incorrect_symbol_1)
     std::string word = "sun";
 
     std::string hidden_word;
-    hidden_word.append(word.size(), hidden_letter);
+    hidden_word.append(word.size(), ascii_hidden_letter);
 
     char entered_letter = 'a';
 
@@ -421,7 +421,7 @@ CTEST(replace_letters, incorrect_symbol_2)
     std::string word = "letter";
 
     std::string hidden_word;
-    hidden_word.append(word.size(), hidden_letter);
+    hidden_word.append(word.size(), ascii_hidden_letter);
 
     char entered_letter = 'p';
 
@@ -444,7 +444,7 @@ CTEST(replace_letters, incorrect_symbol_3)
     std::string word = "music";
 
     std::string hidden_word;
-    hidden_word.append(word.size(), hidden_letter);
+    hidden_word.append(word.size(), ascii_hidden_letter);
 
     char entered_letter = 'b';
 

@@ -1,24 +1,20 @@
 #pragma once
 
-#define abc_length 26
+const int abc_length = 26;
 
-#define ascii_number_0 48
-#define hidden_letter 95
-#define ascii_letter_a 97
-#define ascii_letter_z 122
+const int ascii_number_0 = 48;
+const int ascii_hidden_letter = 95;
+const int ascii_letter_a = 97;
+const int ascii_letter_z = 122;
 
-#define window_length 1120
-#define window_height 700
+const int window_length = 1120;
+const int window_height = 700;
 
-#define max_words_amount 256
-#define max_word_length 8
-#define min_word_length 3
-#define theme_amount 5
+const int max_words_amount = 256;
+const int max_word_length = 8;
+const int min_word_length = 3;
 
-#define button_thickness 1
-
-#define menu_button_length 300
-#define menu_button_height 100
+const int theme_amount = 5;
 
 enum class bg_color { r = 255, g = 235, b = 200 };
 enum class pr_but_color { r = 236, g = 223, b = 255 };

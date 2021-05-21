@@ -29,7 +29,7 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     std::string display_tries = "Your tries: 7";
 
     std::string hidden_word;
-    hidden_word.append(choosen_word_string.size(), hidden_letter);
+    hidden_word.append(choosen_word_string.size(), ascii_hidden_letter);
 
     sf::Text text_hidden_word(hidden_word, font);
     text_hidden_word.setFillColor(sf::Color::Black);

@@ -17,6 +17,8 @@ int open_theme_window(sf::RenderWindow& window)
                "  School",
                "   Sport"};
 
+    const int button_length = 300;
+    const int button_height = 100;
     const int button_coord_length = 400;
     const int button_coord_height = 20;
     const int text_size = 40;
@@ -24,11 +26,11 @@ int open_theme_window(sf::RenderWindow& window)
 
     for (int i = random_t; i <= sport; ++i) {
         theme_buttons[i].form.setSize(
-                sf::Vector2f(menu_button_length, menu_button_height));
+                sf::Vector2f(button_length, button_height));
         theme_buttons[i].form.move(
                 button_coord_length, button_coord_height + delta_height);
         theme_buttons[i].form.setFillColor(sf::Color::White);
-        theme_buttons[i].form.setOutlineThickness(button_thickness);
+        theme_buttons[i].form.setOutlineThickness(1);
         theme_buttons[i].form.setOutlineColor(sf::Color::Black);
 
         theme_buttons[i].text.setFont(font);
@@ -38,7 +40,7 @@ int open_theme_window(sf::RenderWindow& window)
         theme_buttons[i].text.setOrigin(
                 -button_coord_length - text_size - 25, -delta_height - 45);
 
-        delta_height += menu_button_height + 10;
+        delta_height += button_height + 10;
     }
 
     sf::sleep(sf::seconds(0.1));
@@ -51,8 +53,8 @@ int open_theme_window(sf::RenderWindow& window)
             if (sf::IntRect(
                         button_coord_length,
                         button_coord_height + delta_coord_height,
-                        menu_button_length,
-                        menu_button_height)
+                        button_length,
+                        button_height)
                         .contains(sf::Mouse::getPosition(window))) {
                 theme_buttons[i].form.setFillColor(sf::Color(
                         (int)pr_but_color::r,

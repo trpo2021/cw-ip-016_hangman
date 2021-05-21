@@ -33,7 +33,7 @@ void create_alphabet(st_button abc[], sf::Font& font)
         abc[i].form.setSize(
                 sf::Vector2f(letter_button_size, letter_button_size));
         abc[i].form.setFillColor(sf::Color::White);
-        abc[i].form.setOutlineThickness(button_thickness);
+        abc[i].form.setOutlineThickness(1);
         abc[i].form.setOutlineColor(sf::Color::Black);
         abc[i].form.setOrigin(
                 -window_length + length_indent + delta_length,
