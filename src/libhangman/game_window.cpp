@@ -110,12 +110,11 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                         = choosen_word_string.find(ascii_entered_letter);
 
                 if (letter_pos != std::string::npos) {
-                    while (letter_pos != std::string::npos) {
-                        hidden_word.replace(
-                                letter_pos, 1, 1, ascii_entered_letter);
-                        letter_pos = choosen_word_string.find(
-                                ascii_entered_letter, letter_pos + 1);
-                    }
+                    put_guessed_letters(
+                            letter_pos,
+                            ascii_entered_letter,
+                            choosen_word_string,
+                            &hidden_word);
 
                     if (hidden_word.find(ascii_underline)
                         == std::string::npos) {

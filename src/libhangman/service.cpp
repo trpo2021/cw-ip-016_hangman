@@ -33,6 +33,18 @@ int check_input_symbol(char symbol)
     return ERROR_SYMBOL_INPUT;
 }
 
+void put_guessed_letters(
+        size_t letter_pos,
+        char letter,
+        std::string word,
+        std::string* hidden_word)
+{
+    while (letter_pos != std::string::npos) {
+        hidden_word->replace(letter_pos, 1, 1, letter);
+        letter_pos = word.find(letter, letter_pos + 1);
+    }
+}
+
 int choose_the_word(
         int* choosen_theme, std::string* string_theme, std::string* final_word)
 {
