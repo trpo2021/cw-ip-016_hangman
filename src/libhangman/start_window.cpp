@@ -4,6 +4,39 @@
 
 #include <string>
 
+void create_start_buttons(st_button buttons[], int amount, sf::Font& font)
+{
+    const int button_length = 300;
+    const int button_height = 110;
+
+    const int b_coord_length = 400;
+    const int b_coord_height = 200;
+
+    const int t_coord_length = b_coord_length + 100;
+    const int t_coord_height = b_coord_height + 20;
+
+    int delta_height = 0;
+
+    std::string buttons_names[amount] = {"Play", "Quit"};
+
+    for (int i = 0; i < amount; ++i) {
+        buttons[i].form.setSize(sf::Vector2f(button_length, button_height));
+        buttons[i].form.move(b_coord_length, b_coord_height + delta_height);
+        buttons[i].form.setFillColor(sf::Color::White);
+        buttons[i].form.setOutlineThickness(1);
+        buttons[i].form.setOutlineColor(sf::Color::Black);
+
+        buttons[i].text.setFont(font);
+        buttons[i].text.setPosition(
+                t_coord_length, t_coord_height + delta_height);
+        buttons[i].text.setString(buttons_names[i]);
+        buttons[i].text.setCharacterSize(50);
+        buttons[i].text.setFillColor(sf::Color::Black);
+
+        delta_height += 150;
+    }
+}
+
 int begin_the_game()
 {
     const std::string app_name = "Hangman - the game";
@@ -18,51 +51,26 @@ int begin_the_game()
         return CANNOT_LOAD_FONT;
     }
 
-    const int button_length = 300;
-    const int button_height = 110;
-
-    sf::RectangleShape button_play(sf::Vector2f(button_length, button_height));
-    button_play.move(400, 200);
-    button_play.setFillColor(sf::Color::White);
-    button_play.setOutlineThickness(1);
-    button_play.setOutlineColor(sf::Color::Black);
-
-    sf::Text text_play;
-    text_play.setFont(font);
-    text_play.setString("Play");
-    text_play.setCharacterSize(50);
-    text_play.setFillColor(sf::Color::Black);
-    text_play.setPosition(500, 220);
-
-    sf::RectangleShape button_quit(sf::Vector2f(button_length, button_height));
-    button_quit.move(400, 350);
-    button_quit.setFillColor(sf::Color::White);
-    button_quit.setOutlineThickness(1);
-    button_quit.setOutlineColor(sf::Color::Black);
-
-    sf::Text text_quit;
-    text_quit.setFont(font);
-    text_quit.setString("Quit");
-    text_quit.setCharacterSize(50);
-    text_quit.setFillColor(sf::Color::Black);
-    text_quit.setPosition(500, 370);
+    const int start_buttons_amount = 2;
+    st_button start_buttons[start_buttons_amount];
+    create_start_buttons(start_buttons, start_buttons_amount, font);
 
     while (window.isOpen()) {
         int go_next = -1;
 
         if (sf::IntRect(400, 200, 300, 110)
                     .contains(sf::Mouse::getPosition(window))) {
-            button_play.setFillColor(sf::Color(236, 223, 255));
+            start_buttons[0].form.setFillColor(sf::Color(236, 223, 255));
             go_next = 0;
         } else
-            button_play.setFillColor(sf::Color(255, 255, 255));
+            start_buttons[0].form.setFillColor(sf::Color(255, 255, 255));
 
         if (sf::IntRect(400, 350, 300, 110)
                     .contains(sf::Mouse::getPosition(window))) {
-            button_quit.setFillColor(sf::Color(236, 223, 255));
+            start_buttons[1].form.setFillColor(sf::Color(236, 223, 255));
             go_next = 1;
         } else
-            button_quit.setFillColor(sf::Color(255, 255, 255));
+            start_buttons[1].form.setFillColor(sf::Color(255, 255, 255));
 
         while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             if (go_next == 0) {
@@ -78,11 +86,10 @@ int begin_the_game()
         window.clear(
                 sf::Color((int)BgColor::r, (int)BgColor::g, (int)BgColor::b));
 
-        window.draw(button_play);
-        window.draw(button_quit);
-
-        window.draw(text_play);
-        window.draw(text_quit);
+        for (int i = 0; i < start_buttons_amount; ++i) {
+            window.draw(start_buttons[i].form);
+            window.draw(start_buttons[i].text);
+        }
 
         window.display();
 
