@@ -4,31 +4,32 @@
 
 #include <string>
 
+const int start_button_length = 300;
+const int start_button_height = 110;
+const int start_b_coord_length = 400;
+const int start_b_coord_height = 200;
+
 void create_start_buttons(st_button buttons[], int amount, sf::Font& font)
 {
-    const int button_length = 300;
-    const int button_height = 110;
-
-    const int b_coord_length = 400;
-    const int b_coord_height = 200;
-
-    const int t_coord_length = b_coord_length + 100;
-    const int t_coord_height = b_coord_height + 20;
+    const int start_t_coord_length = start_b_coord_length + 100;
+    const int start_t_coord_height = start_b_coord_height + 20;
 
     int delta_height = 0;
 
     std::string buttons_names[amount] = {"Play", "Quit"};
 
     for (int i = 0; i < amount; ++i) {
-        buttons[i].form.setSize(sf::Vector2f(button_length, button_height));
-        buttons[i].form.move(b_coord_length, b_coord_height + delta_height);
+        buttons[i].form.setSize(
+                sf::Vector2f(start_button_length, start_button_height));
+        buttons[i].form.move(
+                start_b_coord_length, start_b_coord_height + delta_height);
         buttons[i].form.setFillColor(sf::Color::White);
         buttons[i].form.setOutlineThickness(1);
         buttons[i].form.setOutlineColor(sf::Color::Black);
 
         buttons[i].text.setFont(font);
         buttons[i].text.setPosition(
-                t_coord_length, t_coord_height + delta_height);
+                start_t_coord_length, start_t_coord_height + delta_height);
         buttons[i].text.setString(buttons_names[i]);
         buttons[i].text.setCharacterSize(50);
         buttons[i].text.setFillColor(sf::Color::Black);
@@ -58,28 +59,30 @@ int begin_the_game()
     while (window.isOpen()) {
         int go_next = -1;
 
-        if (sf::IntRect(400, 200, 300, 110)
-                    .contains(sf::Mouse::getPosition(window))) {
-            start_buttons[0].form.setFillColor(sf::Color(236, 223, 255));
-            go_next = 0;
-        } else
-            start_buttons[0].form.setFillColor(sf::Color(255, 255, 255));
-
-        if (sf::IntRect(400, 350, 300, 110)
-                    .contains(sf::Mouse::getPosition(window))) {
-            start_buttons[1].form.setFillColor(sf::Color(236, 223, 255));
-            go_next = 1;
-        } else
-            start_buttons[1].form.setFillColor(sf::Color(255, 255, 255));
+        for (int i = 0; i < start_buttons_amount; ++i) {
+            if (sf::IntRect(
+                        start_b_coord_length,
+                        start_b_coord_height + 150 * i,
+                        start_button_length,
+                        start_button_height)
+                        .contains(sf::Mouse::getPosition(window))) {
+                start_buttons[i].form.setFillColor(sf::Color(
+                        (int)PrButColor::r,
+                        (int)PrButColor::g,
+                        (int)PrButColor::b));
+                go_next = i;
+            } else
+                start_buttons[i].form.setFillColor(sf::Color::White);
+        }
 
         while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            if (go_next == 0) {
+            switch (go_next) {
+            case 0:
                 open_theme_window(window);
                 break;
-            }
-
-            if (go_next == 1) {
+            case 1:
                 window.close();
+                break;
             }
         }
 
