@@ -57,9 +57,11 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 
     std::string choosen_word_string;
     std::string choosen_theme_string;
-
     int foo_ctw = choose_the_word(
             choosen_theme, &choosen_theme_string, &choosen_word_string);
+    if (foo_ctw != SUCCESS) {
+        return foo_ctw;
+    }
 
     std::string hidden_word;
     hidden_word.append(choosen_word_string.size(), ascii_hidden_letter);
@@ -75,16 +77,12 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     sf::Text text_tries;
     create_text_tries(text_tries, display_tries, font);
 
-    std::string used_letters_display = "Used letters: \n \t";
-
+    std::string used_letters_display = "Used letters: \n\t";
     sf::Text text_used_letters;
     create_text_used_letters(text_used_letters, used_letters_display, font);
 
     st_button abc[abc_length];
     create_alphabet(abc, font);
-
-    bool is_repeating[abc_length];
-    std::fill_n(is_repeating, abc_length, false);
 
     sf::RectangleShape lines[7];
     create_stand(lines);
@@ -103,20 +101,19 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 
     bool is_win = false;
 
+    bool is_repeating_letter[abc_length];
+    std::fill_n(is_repeating_letter, abc_length, false);
+
     window.setKeyRepeatEnabled(false);
 
     while (window.isOpen()) {
-        if (foo_ctw != SUCCESS) {
-            window.close();
-            return foo_ctw;
-        }
-
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::TextEntered
                 && event.text.unicode <= ascii_letter_z
                 && event.text.unicode >= ascii_letter_a && remaining_tries != 0
-                && is_repeating[event.text.unicode - ascii_letter_a] == false) {
+                && is_repeating_letter[event.text.unicode - ascii_letter_a]
+                        == false) {
                 char ascii_entered_letter = event.text.unicode;
 
                 if (check_input_symbol(ascii_entered_letter) != SUCCESS) {
@@ -124,7 +121,8 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                     return ERROR_SYMBOL_INPUT;
                 }
 
-                is_repeating[ascii_entered_letter - ascii_letter_a] = true;
+                is_repeating_letter[ascii_entered_letter - ascii_letter_a]
+                        = true;
 
                 size_t letter_pos
                         = choosen_word_string.find(ascii_entered_letter);
