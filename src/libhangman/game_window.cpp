@@ -95,12 +95,19 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     std::fill_n(is_repeating, abc_length, false);
 
     sf::RectangleShape lines[7];
+    create_stand(lines);
     sf::CircleShape head;
+    create_head(head);
     sf::RectangleShape body;
+    create_body(body);
     sf::RectangleShape lhand;
+    create_lhand(lhand);
     sf::RectangleShape rhand;
+    create_rhand(rhand);
     sf::RectangleShape lleg;
+    create_lleg(lleg);
     sf::RectangleShape rleg;
+    create_rleg(rleg);
 
     bool is_win = false;
 
@@ -152,27 +159,7 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                             = remaining_tries_char;
                     text_tries.setString(display_tries);
 
-                    switch (remaining_tries) {
-                    case 6:
-                        create_stand(lines);
-                        break;
-                    case 5:
-                        create_head(head);
-                        break;
-                    case 4:
-                        create_body(body);
-                        break;
-                    case 3:
-                        create_lhand(lhand);
-                        break;
-                    case 2:
-                        create_rhand(rhand);
-                        break;
-                    case 1:
-                        create_lleg(lleg);
-                        break;
-                    case 0:
-                        create_rleg(rleg);
+                    if (!remaining_tries) {
                         window.draw(rleg);
                         window.display();
 
