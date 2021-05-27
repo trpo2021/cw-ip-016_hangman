@@ -55,20 +55,11 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
         return CANNOT_LOAD_FONT;
     }
 
-    bool is_random_theme = false;
-    if (*choosen_theme == 0)
-        is_random_theme = true;
-
     std::string choosen_word_string;
     std::string choosen_theme_string;
 
     int foo_ctw = choose_the_word(
             choosen_theme, &choosen_theme_string, &choosen_word_string);
-
-    if (is_random_theme)
-        choosen_theme_string = "Random";
-
-    int remaining_tries = 7;
 
     std::string hidden_word;
     hidden_word.append(choosen_word_string.size(), ascii_hidden_letter);
@@ -79,6 +70,7 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     sf::Text text_theme;
     create_text_theme(text_theme, choosen_theme_string, font);
 
+    int remaining_tries = 7;
     std::string display_tries = "Your tries: 7";
     sf::Text text_tries;
     create_text_tries(text_tries, display_tries, font);
