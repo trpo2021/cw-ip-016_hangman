@@ -2,6 +2,52 @@
 
 #include <string>
 
+void create_text_hidden_word(
+        sf::Text& text, std::string word_in_text, sf::Font& font)
+{
+    text.setFont(font);
+    text.setString(word_in_text);
+    text.setFillColor(sf::Color::Black);
+    text.setCharacterSize(55);
+    sf::FloatRect rect_hid = text.getLocalBounds();
+    text.setOrigin(
+            rect_hid.left + rect_hid.width / 2,
+            rect_hid.top + rect_hid.height / 2);
+    text.setPosition(sf::Vector2f(window_length / 2 + 150, 215));
+}
+
+void create_text_theme(sf::Text& text, std::string word_in_text, sf::Font& font)
+{
+    text.setFont(font);
+    text.setString(word_in_text);
+    text.setCharacterSize(70);
+    text.setFillColor(sf::Color::Black);
+    sf::FloatRect rect_theme = text.getLocalBounds();
+    text.setOrigin(
+            rect_theme.left + rect_theme.width / 2,
+            rect_theme.top + rect_theme.height / 2);
+    text.setPosition(sf::Vector2f(window_length / 2, 70));
+}
+
+void create_text_tries(sf::Text& text, std::string word_in_text, sf::Font& font)
+{
+    text.setFont(font);
+    text.setString(word_in_text);
+    text.setCharacterSize(35);
+    text.setFillColor(sf::Color::Black);
+    text.setOrigin(-850, -20 - 35);
+}
+
+void create_text_used_letters(
+        sf::Text& text, std::string word_in_text, sf::Font& font)
+{
+    text.setFont(font);
+    text.setString(word_in_text);
+    text.setCharacterSize(30);
+    text.setFillColor(sf::Color::Black);
+    text.setOrigin(-410, -250);
+}
+
 int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 {
     sf::Font font;
@@ -22,50 +68,25 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
     if (is_random_theme)
         choosen_theme_string = "Random";
 
-    st_button abc_buttons[abc_length];
-
     int remaining_tries = 7;
-
-    std::string display_tries = "Your tries: 7";
 
     std::string hidden_word;
     hidden_word.append(choosen_word_string.size(), ascii_hidden_letter);
 
-    sf::Text text_hidden_word(hidden_word, font);
-    text_hidden_word.setFillColor(sf::Color::Black);
-    text_hidden_word.setCharacterSize(55);
-    sf::FloatRect rect_hid = text_hidden_word.getLocalBounds();
-    text_hidden_word.setOrigin(
-            rect_hid.left + rect_hid.width / 2,
-            rect_hid.top + rect_hid.height / 2);
-    text_hidden_word.setPosition(sf::Vector2f(window_length / 2 + 150, 215));
+    sf::Text text_hidden_word;
+    create_text_hidden_word(text_hidden_word, hidden_word, font);
 
     sf::Text text_theme;
-    text_theme.setFont(font);
-    text_theme.setString(choosen_theme_string);
-    text_theme.setCharacterSize(70);
-    text_theme.setFillColor(sf::Color::Black);
-    sf::FloatRect rect_theme = text_theme.getLocalBounds();
-    text_theme.setOrigin(
-            rect_theme.left + rect_theme.width / 2,
-            rect_theme.top + rect_theme.height / 2);
-    text_theme.setPosition(sf::Vector2f(window_length / 2, 70));
+    create_text_theme(text_theme, choosen_theme_string, font);
 
+    std::string display_tries = "Your tries: 7";
     sf::Text text_tries;
-    text_tries.setFont(font);
-    text_tries.setString(display_tries);
-    text_tries.setCharacterSize(35);
-    text_tries.setFillColor(sf::Color::Black);
-    text_tries.setOrigin(-850, -20 - 35);
+    create_text_tries(text_tries, display_tries, font);
 
     std::string used_letters_display = "Used letters: \n \t";
 
     sf::Text text_used_letters;
-    text_used_letters.setFont(font);
-    text_used_letters.setString(used_letters_display);
-    text_used_letters.setCharacterSize(30);
-    text_used_letters.setFillColor(sf::Color::Black);
-    text_used_letters.setOrigin(-410, -250);
+    create_text_used_letters(text_used_letters, used_letters_display, font);
 
     st_button abc[abc_length];
     create_alphabet(abc, font);
