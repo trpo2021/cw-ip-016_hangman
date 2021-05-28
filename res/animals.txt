@@ -64,3 +64,8 @@ hamster
 tortoise
 jaguar
 yak
+starfish
+seahorse
+flamingo
+eagle
+owl

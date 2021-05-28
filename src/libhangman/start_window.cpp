@@ -1,6 +1,6 @@
 #include "start_window.h"
 
-#include <SFML/Audio.hpp>
+//#include <SFML/Audio.hpp>
 
 const int start_button_length = 300;
 const int start_button_height = 110;
