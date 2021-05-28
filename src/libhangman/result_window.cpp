@@ -1,5 +1,71 @@
 #include "result_window.h"
 
+const int result_button_length = 300;
+const int result_button_height = 100;
+const int result_b_coord_length = 400;
+const int result_b_coord_height = 220;
+
+void create_result_buttons(st_button buttons[], int amount, sf::Font& font)
+{
+    const int result_t_coord_length = result_b_coord_length + 95;
+    const int result_t_coord_height = result_b_coord_height + 25;
+
+    int delta_height = 0;
+
+    std::string button_names[amount] = {"Again", " Quit"};
+
+    for (int i = 0; i < amount; ++i) {
+        buttons[i].form.setSize(
+                sf::Vector2f(result_button_length, result_button_height));
+        buttons[i].form.move(
+                result_b_coord_length, result_b_coord_height + delta_height);
+        buttons[i].form.setFillColor(sf::Color::White);
+        buttons[i].form.setOutlineThickness(1);
+        buttons[i].form.setOutlineColor(sf::Color::Black);
+
+        buttons[i].text.setFont(font);
+        buttons[i].text.setPosition(
+                result_t_coord_length, result_t_coord_height + delta_height);
+        buttons[i].text.setString(button_names[i]);
+        buttons[i].text.setCharacterSize(40);
+        buttons[i].text.setFillColor(sf::Color::Black);
+
+        delta_height += 110;
+    }
+}
+
+void create_text_result(sf::Text& text, bool is_win, sf::Font& font)
+{
+    text.setFont(font);
+
+    if (is_win)
+        text.setString("You win!");
+    else
+        text.setString("You lose!");
+
+    text.setStyle(sf::Text::Underlined);
+    text.setCharacterSize(70);
+    text.setFillColor(sf::Color::Black);
+    sf::FloatRect rect_res = text.getLocalBounds();
+    text.setOrigin(
+            rect_res.left + rect_res.width / 2,
+            rect_res.top + rect_res.height / 2);
+    text.setPosition(sf::Vector2f(window_length / 2, 50));
+}
+
+void create_text_gword(sf::Text& text, std::string word_in_text, sf::Font& font)
+{
+    text.setFont(font);
+    text.setString("Answer is: " + word_in_text);
+    text.setCharacterSize(50);
+    text.setFillColor(sf::Color::Black);
+    sf::FloatRect rect_word = text.getLocalBounds();
+    text.setOrigin(
+            rect_word.left + rect_word.width / 2,
+            rect_word.top + rect_word.height / 2);
+    text.setPosition(sf::Vector2f(window_length / 2, 150));
+}
+
 int open_result_window(
         sf::RenderWindow& window, bool is_win, std::string the_word)
 {
@@ -9,83 +75,45 @@ int open_result_window(
     }
 
     sf::Text text_result;
-    text_result.setFont(font);
-    if (is_win)
-        text_result.setString("You win!");
-    else
-        text_result.setString("You lose!");
-    text_result.setStyle(sf::Text::Underlined);
-    text_result.setCharacterSize(70);
-    text_result.setFillColor(sf::Color::Black);
-    sf::FloatRect rect_res = text_result.getLocalBounds();
-    text_result.setOrigin(
-            rect_res.left + rect_res.width / 2,
-            rect_res.top + rect_res.height / 2);
-    text_result.setPosition(sf::Vector2f(window_length / 2, 50));
+    create_text_result(text_result, is_win, font);
 
     sf::Text text_the_word;
-    text_the_word.setFont(font);
-    text_the_word.setString("Answer is: " + the_word);
-    text_the_word.setCharacterSize(50);
-    text_the_word.setFillColor(sf::Color::Black);
-    sf::FloatRect rect_word = text_the_word.getLocalBounds();
-    text_the_word.setOrigin(
-            rect_word.left + rect_word.width / 2,
-            rect_word.top + rect_word.height / 2);
-    text_the_word.setPosition(sf::Vector2f(window_length / 2, 150));
+    create_text_gword(text_the_word, the_word, font);
 
-    st_button result_buttons[2];
-
-    int delta_height = 0;
-
-    std::string button_names[2] = {"Again", " Quit"};
-    int text_size = 40;
-
-    for (int i = 0; i <= 1; ++i) {
-        result_buttons[i].form.setSize(sf::Vector2f(300, 100));
-        result_buttons[i].form.move(400, 220 + delta_height);
-        result_buttons[i].form.setFillColor(sf::Color(255, 255, 255));
-        result_buttons[i].form.setOutlineThickness(1);
-        result_buttons[i].form.setOutlineColor(sf::Color::Black);
-
-        result_buttons[i].text.setFont(font);
-        result_buttons[i].text.setString(button_names[i]);
-        result_buttons[i].text.setCharacterSize(text_size);
-        result_buttons[i].text.setFillColor(sf::Color::Black);
-        result_buttons[i].text.setOrigin(
-                -400 - text_size - 25 - 30, -35 - delta_height - 210);
-
-        delta_height += 100 + 10;
-    }
+    const int result_buttons_amount = 2;
+    st_button result_buttons[result_buttons_amount];
+    create_result_buttons(result_buttons, result_buttons_amount, font);
 
     if (!is_win)
         sf::sleep(sf::seconds(3));
 
     while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            int delta = 0;
+        int go_next = -1;
 
-            for (int i = 0; i <= 1; ++i) {
-                if (sf::IntRect(400, 220 + delta, 300, 100)
-                            .contains(sf::Mouse::getPosition(window))) {
-                    result_buttons[i].form.setFillColor(sf::Color(
-                            (int)PrButColor::r,
-                            (int)PrButColor::g,
-                            (int)PrButColor::b));
-                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                        if (i == 0)
-                            open_theme_window(window);
-                        if (i == 1)
-                            window.close();
-                    }
-                } else
-                    result_buttons[i].form.setFillColor(sf::Color::White);
+        for (int i = 0; i < result_buttons_amount; ++i) {
+            if (sf::IntRect(
+                        result_b_coord_length,
+                        result_b_coord_height + 110 * i,
+                        result_button_length,
+                        result_button_height)
+                        .contains(sf::Mouse::getPosition(window))) {
+                result_buttons[i].form.setFillColor(sf::Color(
+                        (int)PrButColor::r,
+                        (int)PrButColor::g,
+                        (int)PrButColor::b));
+                go_next = i;
+            } else
+                result_buttons[i].form.setFillColor(sf::Color::White);
+        }
 
-                delta += 110;
-            }
-            if (is_window_closed(event)) {
+        while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            switch (go_next) {
+            case 0:
+                open_theme_window(window);
+                break;
+            case 1:
                 window.close();
+                break;
             }
         }
 
@@ -100,6 +128,12 @@ int open_result_window(
         }
 
         window.display();
+
+        sf::Event event_close_app;
+        while (window.pollEvent(event_close_app))
+            if (is_window_closed(event_close_app)) {
+                window.close();
+            }
     }
 
     return SUCCESS;
