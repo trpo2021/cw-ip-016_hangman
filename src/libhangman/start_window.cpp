@@ -50,11 +50,11 @@ int begin_the_game()
         return CANNOT_LOAD_FONT;
     }
 
-    sf::Music music;
-    music.openFromFile("../res/Sweet_Life.ogg");
+    // sf::Music music;
+    // music.openFromFile("../res/Sweet_Life.ogg");
     // music.setVolume(7);
-    music.play();
-    music.setLoop(true);
+    // music.play();
+    // music.setLoop(true);
 
     const int start_buttons_amount = 2;
     st_button start_buttons[start_buttons_amount];
