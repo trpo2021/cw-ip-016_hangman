@@ -1,5 +1,7 @@
 #include "start_window.h"
 
+#include <SFML/Audio.hpp>
+
 const int start_button_length = 300;
 const int start_button_height = 110;
 const int start_b_coord_length = 400;
@@ -47,6 +49,12 @@ int begin_the_game()
     if (!font.loadFromFile("../res/sansation.ttf")) {
         return CANNOT_LOAD_FONT;
     }
+
+    sf::Music music;
+    music.openFromFile("../res/Sweet_Life.ogg");
+    // music.setVolume(7);
+    music.play();
+    music.setLoop(true);
 
     const int start_buttons_amount = 2;
     st_button start_buttons[start_buttons_amount];
