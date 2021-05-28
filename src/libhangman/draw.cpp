@@ -1,7 +1,5 @@
 #include "draw.h"
 
-#include <string>
-
 void create_alphabet(st_button abc[], sf::Font& font)
 {
     std::string abc_string[abc_length]

@@ -1,10 +1,6 @@
 #include "service.h"
 
-#include <ctime>
 #include <fstream>
-#include <iostream>
-#include <stdlib.h>
-#include <string>
 
 bool is_window_closed(sf::Event event)
 {
@@ -54,8 +50,11 @@ int choose_the_word(
 
     std::string word_buffer[max_words_amount];
 
-    if (*choosen_theme == random_t)
+    bool is_random_theme = false;
+    if (*choosen_theme == random_t) {
+        is_random_theme = true;
         *choosen_theme = rand() % theme_amount + 1;
+    }
 
     std::ifstream file_theme;
     switch (*choosen_theme) {
@@ -79,6 +78,10 @@ int choose_the_word(
         *string_theme = "Sport";
         file_theme.open("../res/sport.txt");
         break;
+    }
+
+    if (is_random_theme) {
+        *string_theme = "Random";
     }
 
     if (!file_theme.is_open()) {

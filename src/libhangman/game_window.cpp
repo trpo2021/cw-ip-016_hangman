@@ -1,6 +1,50 @@
 #include "game_window.h"
 
-#include <string>
+void create_text_hidden_word(
+        sf::Text& text, std::string word_in_text, sf::Font& font)
+{
+    text.setFont(font);
+    text.setString(word_in_text);
+    text.setFillColor(sf::Color::Black);
+    text.setCharacterSize(55);
+    sf::FloatRect rect_hid = text.getLocalBounds();
+    text.setOrigin(
+            rect_hid.left + rect_hid.width / 2,
+            rect_hid.top + rect_hid.height / 2);
+    text.setPosition(sf::Vector2f(window_length / 2 + 150, 215));
+}
+
+void create_text_theme(sf::Text& text, std::string word_in_text, sf::Font& font)
+{
+    text.setFont(font);
+    text.setString(word_in_text);
+    text.setCharacterSize(70);
+    text.setFillColor(sf::Color::Black);
+    sf::FloatRect rect_theme = text.getLocalBounds();
+    text.setOrigin(
+            rect_theme.left + rect_theme.width / 2,
+            rect_theme.top + rect_theme.height / 2);
+    text.setPosition(sf::Vector2f(window_length / 2, 70));
+}
+
+void create_text_tries(sf::Text& text, std::string word_in_text, sf::Font& font)
+{
+    text.setFont(font);
+    text.setString(word_in_text);
+    text.setCharacterSize(35);
+    text.setFillColor(sf::Color::Black);
+    text.setOrigin(-850, -20 - 35);
+}
+
+void create_text_used_letters(
+        sf::Text& text, std::string word_in_text, sf::Font& font)
+{
+    text.setFont(font);
+    text.setString(word_in_text);
+    text.setCharacterSize(30);
+    text.setFillColor(sf::Color::Black);
+    text.setOrigin(-410, -250);
+}
 
 int open_game_window(sf::RenderWindow& window, int* choosen_theme)
 {
@@ -9,94 +53,65 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
         return CANNOT_LOAD_FONT;
     }
 
-    bool is_random_theme = false;
-    if (*choosen_theme == 0)
-        is_random_theme = true;
-
     std::string choosen_word_string;
     std::string choosen_theme_string;
-
     int foo_ctw = choose_the_word(
             choosen_theme, &choosen_theme_string, &choosen_word_string);
-
-    if (is_random_theme)
-        choosen_theme_string = "Random";
-
-    st_button abc_buttons[abc_length];
-
-    int remaining_tries = 7;
-
-    std::string display_tries = "Your tries: 7";
+    if (foo_ctw != SUCCESS) {
+        return foo_ctw;
+    }
 
     std::string hidden_word;
     hidden_word.append(choosen_word_string.size(), ascii_hidden_letter);
 
-    sf::Text text_hidden_word(hidden_word, font);
-    text_hidden_word.setFillColor(sf::Color::Black);
-    text_hidden_word.setCharacterSize(55);
-    sf::FloatRect rect_hid = text_hidden_word.getLocalBounds();
-    text_hidden_word.setOrigin(
-            rect_hid.left + rect_hid.width / 2,
-            rect_hid.top + rect_hid.height / 2);
-    text_hidden_word.setPosition(sf::Vector2f(window_length / 2 + 150, 215));
+    sf::Text text_hidden_word;
+    create_text_hidden_word(text_hidden_word, hidden_word, font);
 
     sf::Text text_theme;
-    text_theme.setFont(font);
-    text_theme.setString(choosen_theme_string);
-    text_theme.setCharacterSize(70);
-    text_theme.setFillColor(sf::Color::Black);
-    sf::FloatRect rect_theme = text_theme.getLocalBounds();
-    text_theme.setOrigin(
-            rect_theme.left + rect_theme.width / 2,
-            rect_theme.top + rect_theme.height / 2);
-    text_theme.setPosition(sf::Vector2f(window_length / 2, 70));
+    create_text_theme(text_theme, choosen_theme_string, font);
 
+    int remaining_tries = 7;
+    std::string display_tries = "Your tries: 7";
     sf::Text text_tries;
-    text_tries.setFont(font);
-    text_tries.setString(display_tries);
-    text_tries.setCharacterSize(35);
-    text_tries.setFillColor(sf::Color::Black);
-    text_tries.setOrigin(-850, -20 - 35);
+    create_text_tries(text_tries, display_tries, font);
 
-    std::string used_letters_display = "Used letters: \n \t";
-
+    std::string used_letters_display = "Used letters: \n\t";
     sf::Text text_used_letters;
-    text_used_letters.setFont(font);
-    text_used_letters.setString(used_letters_display);
-    text_used_letters.setCharacterSize(30);
-    text_used_letters.setFillColor(sf::Color::Black);
-    text_used_letters.setOrigin(-410, -250);
+    create_text_used_letters(text_used_letters, used_letters_display, font);
 
     st_button abc[abc_length];
     create_alphabet(abc, font);
 
-    bool is_repeating[abc_length];
-    std::fill_n(is_repeating, abc_length, false);
-
     sf::RectangleShape lines[7];
+    create_stand(lines);
     sf::CircleShape head;
+    create_head(head);
     sf::RectangleShape body;
+    create_body(body);
     sf::RectangleShape lhand;
+    create_lhand(lhand);
     sf::RectangleShape rhand;
+    create_rhand(rhand);
     sf::RectangleShape lleg;
+    create_lleg(lleg);
     sf::RectangleShape rleg;
+    create_rleg(rleg);
 
     bool is_win = false;
+
+    bool is_repeating_letter[abc_length];
+    std::fill_n(is_repeating_letter, abc_length, false);
 
     window.setKeyRepeatEnabled(false);
 
     while (window.isOpen()) {
-        if (foo_ctw != SUCCESS) {
-            window.close();
-            return foo_ctw;
-        }
-
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::TextEntered
                 && event.text.unicode <= ascii_letter_z
                 && event.text.unicode >= ascii_letter_a && remaining_tries != 0
-                && is_repeating[event.text.unicode - ascii_letter_a] == false) {
+                && is_repeating_letter[event.text.unicode - ascii_letter_a]
+                        == false) {
                 char ascii_entered_letter = event.text.unicode;
 
                 if (check_input_symbol(ascii_entered_letter) != SUCCESS) {
@@ -104,7 +119,8 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                     return ERROR_SYMBOL_INPUT;
                 }
 
-                is_repeating[ascii_entered_letter - ascii_letter_a] = true;
+                is_repeating_letter[ascii_entered_letter - ascii_letter_a]
+                        = true;
 
                 size_t letter_pos
                         = choosen_word_string.find(ascii_entered_letter);
@@ -131,27 +147,7 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                             = remaining_tries_char;
                     text_tries.setString(display_tries);
 
-                    switch (remaining_tries) {
-                    case 6:
-                        create_stand(lines);
-                        break;
-                    case 5:
-                        create_head(head);
-                        break;
-                    case 4:
-                        create_body(body);
-                        break;
-                    case 3:
-                        create_lhand(lhand);
-                        break;
-                    case 2:
-                        create_rhand(rhand);
-                        break;
-                    case 1:
-                        create_lleg(lleg);
-                        break;
-                    case 0:
-                        create_rleg(rleg);
+                    if (!remaining_tries) {
                         window.draw(rleg);
                         window.display();
 
