@@ -2,8 +2,6 @@
 
 #include <libhangman/service.h>
 
-#include <SFML/Graphics.hpp>
-
 void create_alphabet(st_button abc[], sf::Font& font);
 
 void create_stand(sf::RectangleShape lines[]);

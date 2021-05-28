@@ -1,10 +1,6 @@
 #include "service.h"
 
-#include <ctime>
 #include <fstream>
-#include <iostream>
-#include <stdlib.h>
-#include <string>
 
 bool is_window_closed(sf::Event event)
 {

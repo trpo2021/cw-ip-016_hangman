@@ -1,9 +1,5 @@
 #include "start_window.h"
 
-#include <SFML/Graphics.hpp>
-
-#include <string>
-
 const int start_button_length = 300;
 const int start_button_height = 110;
 const int start_b_coord_length = 400;

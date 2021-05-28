@@ -1,7 +1,5 @@
 #include "game_window.h"
 
-#include <string>
-
 void create_text_hidden_word(
         sf::Text& text, std::string word_in_text, sf::Font& font)
 {
