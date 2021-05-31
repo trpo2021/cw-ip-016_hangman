@@ -146,15 +146,6 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                     display_tries[display_tries.size() - 1]
                             = remaining_tries_char;
                     text_tries.setString(display_tries);
-
-                    if (!remaining_tries) {
-                        window.draw(rleg);
-                        window.display();
-
-                        is_win = false;
-                        open_result_window(window, is_win, choosen_word_string);
-                        break;
-                    }
                 }
 
                 abc[event.text.unicode - ascii_letter_a].text.setString(' ');
@@ -180,8 +171,10 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
         window.draw(text_used_letters);
         window.draw(text_hidden_word);
 
-        if (remaining_tries < 1)
+        if (remaining_tries < 1) {
             window.draw(rleg);
+            is_win = false;
+        }
         if (remaining_tries < 2)
             window.draw(lleg);
         if (remaining_tries < 3)
@@ -197,6 +190,10 @@ int open_game_window(sf::RenderWindow& window, int* choosen_theme)
                 window.draw(lines[i]);
 
         window.display();
+
+        if (!remaining_tries) {
+            open_result_window(window, is_win, choosen_word_string);
+        }
     }
 
     return SUCCESS;
